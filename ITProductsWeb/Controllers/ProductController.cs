@@ -1,4 +1,5 @@
 ﻿using ITProductsWeb.Data;
+using ITProductsWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITProductsWeb.Controllers
@@ -13,8 +14,8 @@ namespace ITProductsWeb.Controllers
         }
         public IActionResult Index()
         {
-            var objProductList = _db.Products.ToList();
-            return View();
+            IEnumerable<Product> objProductList = _db.Products;
+            return View(objProductList);
         }
     }
 }
