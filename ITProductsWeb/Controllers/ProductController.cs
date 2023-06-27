@@ -37,6 +37,7 @@ namespace ITProductsWeb.Controllers
             {
                 _db.Products.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -74,6 +75,7 @@ namespace ITProductsWeb.Controllers
             {
                 _db.Products.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Product updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -111,6 +113,7 @@ namespace ITProductsWeb.Controllers
 
             _db.Products.Remove(obj);
             _db.SaveChanges();
+            TempData["success"] = "Product deleted successfully";
             return RedirectToAction("Index");
         }
     }
