@@ -17,5 +17,12 @@ namespace ITProductsWeb.Controllers
             IEnumerable<Product> objProductList = _db.Products;
             return View(objProductList);
         }
+
+        //GET
+        public IActionResult Create()
+        {
+            return View();
+        }
+
     }
 }
