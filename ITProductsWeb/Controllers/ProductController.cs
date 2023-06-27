@@ -10,7 +10,7 @@ namespace ITProductsWeb.Controllers
 
         public ProductController(ProductsDbContext db)
         {
-            _db = db;  
+            _db = db;
         }
         public IActionResult Index()
         {
@@ -24,5 +24,18 @@ namespace ITProductsWeb.Controllers
             return View();
         }
 
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Product obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Products.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
 }
