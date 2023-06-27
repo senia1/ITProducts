@@ -29,6 +29,47 @@ namespace ITProductsWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Product obj)
         {
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Products.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
+        //GET
+        public IActionResult Edit(int? id)
+        {
+            if(id==null || id == 0) 
+            {
+                return NotFound();
+            }
+            var productFromDb = _db.Products.Find(id);
+            //var productFromDbFirst = _db.Products.FirstOrDefault(u => u.Id == id);
+            //var productFromDbSingle = _db.Products.SingleOrDefault(u => u.Id == id);
+
+            if (productFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(productFromDb);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Product obj)
+        {
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
+            }
             if (ModelState.IsValid)
             {
                 _db.Products.Add(obj);
