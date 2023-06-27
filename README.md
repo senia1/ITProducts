@@ -1,6 +1,7 @@
-# ITProducts - ASP.NET Core Web MVC application
+# ITProducts
+- ASP.NET Core Web MVC application
 
-# Database used Microsoft SQL Server
+- Database used Microsoft SQL Server
 
-# Application allows to create, read, update and delete IT-Products
+- Application allows to create, read, update and delete IT-Products
 
